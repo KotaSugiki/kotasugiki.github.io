@@ -92,6 +92,7 @@ export function Layout() {
   useLayoutEffect(() => {
     document.body.dataset.page = pageName(pathname);
     document.body.classList.toggle('home', pathname === '/');
+    if (window.location.hash) return;
     window.scrollTo(0, 0);
   }, [pathname]);
 
