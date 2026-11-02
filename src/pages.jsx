@@ -3,7 +3,7 @@ import { A, Footer, PostList, Pre, useTitle } from './components.jsx';
 import { posts, postsByYear } from './content.js';
 
 function Article({ title, date, tag, children, foot }) {
-  useTitle(`${title} — 杉木 航太`);
+  useTitle(`${title} — Kota Sugiki`);
   return (
     <>
       <main className="col">
@@ -139,7 +139,7 @@ export function Post({ slug }) {
 }
 
 export function Home() {
-  useTitle('杉木 航太');
+  useTitle('Kota Sugiki');
   return (
     <>
       <main className="col">
@@ -166,7 +166,7 @@ export function Home() {
 }
 
 export function Writing() {
-  useTitle('文章 — 杉木 航太');
+  useTitle('文章 — Kota Sugiki');
   const groups = postsByYear();
   return (
     <>
@@ -190,7 +190,7 @@ export function Writing() {
 }
 
 export function About() {
-  useTitle('自己紹介 — 杉木 航太');
+  useTitle('自己紹介 — Kota Sugiki');
   return (
     <>
       <main className="col">
@@ -229,7 +229,7 @@ export function About() {
 }
 
 export function Soon() {
-  useTitle('準備中 — 杉木 航太');
+  useTitle('準備中 — Kota Sugiki');
   return (
     <>
       <main className="col">
@@ -243,7 +243,7 @@ export function Soon() {
 }
 
 export function Missing() {
-  useTitle('見つかりません — 杉木 航太');
+  useTitle('見つかりません — Kota Sugiki');
   return (
     <>
       <main className="col">
