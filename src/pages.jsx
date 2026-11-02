@@ -6,6 +6,15 @@ import { Markdown } from './markdown.jsx';
 import { segmentArticle } from './outline.js';
 import { TocAside, TocMobile, useArticleToc } from './toc.jsx';
 
+function SlashList({ items }) {
+  return items.map((item, index) => (
+    <Fragment key={item}>
+      <span className="fact-item">{item}{index < items.length - 1 ? ' /' : ''}</span>
+      {index < items.length - 1 ? ' ' : null}
+    </Fragment>
+  ));
+}
+
 export function Post() {
   const { slug } = useParams();
   const post = posts.find((item) => item.slug === slug);
@@ -36,7 +45,7 @@ function Article({ post }) {
               <Markdown blocks={segmented.blocks} />
             </div>
             <div className="post-foot fade" style={{ '--i': 3 }}>
-              <A className="u" href="/writing">← 文章の一覧</A>
+              <A className="u" href="/blog">← ブログの一覧</A>
               <A className="u" href={post.qiita} target="_blank" rel="noopener">Qiitaで読む →</A>
             </div>
           </article>
@@ -65,9 +74,9 @@ export function Home() {
           学んだことや日々の日記を書き留めています。
         </p>
         <section className="fade" style={{ '--i': 3 }}>
-          <h2 className="label">Recent writing</h2>
+          <h2 className="label">Recent posts</h2>
           <PostList posts={posts.slice(0, 4)} />
-          <A className="more u" href="/writing">すべての文章を読む →</A>
+          <A className="more u" href="/blog">ブログをすべて見る →</A>
         </section>
       </main>
       <Footer i={4} />
@@ -76,12 +85,12 @@ export function Home() {
 }
 
 export function Writing() {
-  useTitle('文章 — Kota Sugiki');
+  useTitle('ブログ — Kota Sugiki');
   const groups = postsByYear();
   return (
     <>
       <main className="col">
-        <h1 className="page-title fade" style={{ '--i': 0 }}>文章</h1>
+        <h1 className="page-title fade" style={{ '--i': 0 }}>ブログ</h1>
         <p className="lead fade" style={{ '--i': 1 }}>
           ローカルLLMを手元で動かすための環境構築や、試してみてわかったことの記録です。
         </p>
@@ -125,13 +134,17 @@ export function About() {
         <h2 className="label fade" style={{ '--i': 5, marginTop: 40 }}>Profile</h2>
         <dl className="facts fade" style={{ '--i': 6 }}>
           <dt>Focus</dt>
-          <dd>ローカルLLMの推論環境、量子化、ML基盤</dd>
+          <dd>
+            <SlashList items={['ローカルLLMの環境構築', 'ML', 'アプリ開発', '生成AIに関する教育', 'マネジメント']} />
+          </dd>
           <dt>Tools</dt>
-          <dd>llama.cpp / Ollama / vLLM / MLX / Docker</dd>
+          <dd>
+            <SlashList items={['vLLM', 'LiteLLM', 'LM Studio', 'Docker', 'Claude Code', 'Grok Bots', 'Cursor', 'Python', 'PyTorch']} />
+          </dd>
           <dt>Location</dt>
           <dd>三重（JST）</dd>
           <dt>Now</dt>
-          <dd>自宅の推論サーバーを静かに作り直しています。</dd>
+          <dd>個人開発やスキル作成、ブログの更新をしています。</dd>
         </dl>
         <h2 className="label fade" style={{ '--i': 7 }}>Elsewhere</h2>
         <ul className="links-list fade" style={{ '--i': 8 }}>

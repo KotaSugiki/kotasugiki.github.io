@@ -77,16 +77,20 @@ export function PostList({ posts, showTags = false }) {
   );
 }
 
+function isBlogPath(pathname) {
+  return pathname === '/blog' || pathname === '/writing' || pathname.startsWith('/posts');
+}
+
 function pageName(pathname) {
   if (pathname === '/') return 'home';
   if (pathname === '/about') return 'about';
-  if (pathname === '/writing' || pathname.startsWith('/posts')) return 'writing';
+  if (isBlogPath(pathname)) return 'writing';
   return '';
 }
 
 export function Layout() {
   const { pathname } = useLocation();
-  const writingOn = pathname === '/writing' || pathname.startsWith('/posts');
+  const writingOn = isBlogPath(pathname);
   const aboutOn = pathname === '/about';
 
   useLayoutEffect(() => {
@@ -101,7 +105,7 @@ export function Layout() {
       <header className="site-header">
         <A href="/" className="home-link">杉木 航太</A>
         <nav aria-label="メイン">
-          <A href="/writing" aria-current={writingOn ? 'page' : undefined}>文章</A>
+          <A href="/blog" aria-current={writingOn ? 'page' : undefined}>ブログ</A>
           <A href="/about" aria-current={aboutOn ? 'page' : undefined}>自己紹介</A>
           <a href="https://github.com/KotaSugiki" target="_blank" rel="noopener">GitHub</a>
           <a href="https://x.com/" target="_blank" rel="noopener">X</a>
