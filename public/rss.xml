@@ -2,42 +2,22 @@
 <rss version="2.0">
   <channel>
     <title>Kota Sugiki</title>
-    <link>https://example.com/</link>
+    <link>https://kotasugiki.github.io/</link>
     <description>ローカルLLMの環境構築と機械学習基盤のメモ</description>
     <item>
-      <title>llama.cpp と Ollama を同じマシンで使い分ける</title>
-      <link>https://example.com/posts/llama-cpp-ollama</link>
-      <pubDate>Sat, 24 Oct 2026 00:00:00 +0900</pubDate>
+      <title>open-slide：Claude Code / Codex にスライドを React で書かせるフレームワークを試してみた</title>
+      <link>https://kotasugiki.github.io/posts/58de799c8d2f0a13463e</link>
+      <pubDate>Fri, 30 Oct 2026 14:22:00 +0900</pubDate>
     </item>
     <item>
-      <title>自宅GPUで70Bクラスを動かすときの量子化の選び方</title>
-      <link>https://example.com/posts/quantize-70b</link>
-      <pubDate>Thu, 08 Oct 2026 00:00:00 +0900</pubDate>
+      <title>LM Studio + Qwen Code + DuckDuckGo MCPでWeb検索を実現する</title>
+      <link>https://kotasugiki.github.io/posts/3340fa82c944849916db</link>
+      <pubDate>Tue, 25 Aug 2026 15:35:03 +0900</pubDate>
     </item>
     <item>
-      <title>vLLM を Docker Compose で立てる最小構成</title>
-      <link>https://example.com/posts/soon</link>
-      <pubDate>Tue, 15 Sep 2026 00:00:00 +0900</pubDate>
-    </item>
-    <item>
-      <title>MacBook で MLX を試した週末の記録</title>
-      <link>https://example.com/posts/soon</link>
-      <pubDate>Sun, 30 Aug 2026 00:00:00 +0900</pubDate>
-    </item>
-    <item>
-      <title>ローカルLLMの日本語評価を自分用に小さく作る</title>
-      <link>https://example.com/posts/soon</link>
-      <pubDate>Sun, 02 Aug 2026 00:00:00 +0900</pubDate>
-    </item>
-    <item>
-      <title>GPUの温度と電気代を気にしながら常時稼働させる</title>
-      <link>https://example.com/posts/soon</link>
-      <pubDate>Sun, 21 Jun 2026 00:00:00 +0900</pubDate>
-    </item>
-    <item>
-      <title>2025年、手元で動かしたモデルの振り返り</title>
-      <link>https://example.com/posts/soon</link>
-      <pubDate>Sun, 28 Dec 2025 00:00:00 +0900</pubDate>
+      <title>vLLM + LiteLLMをWSL/Docker Composeで動かし、Qwen Codeから接続するまで</title>
+      <link>https://kotasugiki.github.io/posts/f48222cf218c0407cded</link>
+      <pubDate>Thu, 20 Aug 2026 22:05:56 +0900</pubDate>
     </item>
   </channel>
 </rss>
