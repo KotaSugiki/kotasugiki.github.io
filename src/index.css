@@ -6,6 +6,7 @@
   --serif:"Noto Serif JP","Noto Serif CJK JP",serif;
   --latin:"Newsreader","Noto Serif JP",serif;
   --mono:"IBM Plex Mono","Noto Serif JP",monospace;
+  --heading-offset:32px;
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{background:var(--bg)}
@@ -62,6 +63,7 @@ ol.posts a:hover time{color:var(--ink2)}
 .post-title{font-size:32px;font-weight:400;line-height:1.6;letter-spacing:.08em;view-transition-name:post-title}
 .prose{font-size:16px;line-height:2.15;letter-spacing:.05em;color:var(--ink2)}
 .prose p{margin:0 0 1.6em}
+.prose :is(h2,h3,h4,h5,h6){scroll-margin-top:var(--heading-offset)}
 .prose h1,.prose h2{font-size:21px;font-weight:500;letter-spacing:.1em;color:var(--ink);margin:3.2em 0 1.1em}
 .prose h1::before,.prose h2::before{content:"";display:inline-block;width:8px;height:8px;background:var(--shu);margin-right:14px;vertical-align:.12em}
 .prose > h1:first-child,.prose > h2:first-child{margin-top:0}
@@ -90,6 +92,41 @@ ol.posts a:hover time{color:var(--ink2)}
 .prose th{font-weight:500;color:var(--ink);border-bottom-color:var(--rule2)}
 .prose td code{white-space:nowrap}
 .post-foot{margin-top:72px;padding-top:28px;border-top:1px solid var(--rule);display:flex;justify-content:space-between;font-size:13px;letter-spacing:.14em;color:var(--sub);gap:20px}
+
+.prose.prose-en{font-family:var(--latin);font-style:normal;font-weight:400;font-size:17px;line-height:1.72;letter-spacing:.012em;color:#6d665a}
+.prose.prose-en p{font-family:inherit;word-break:normal;line-break:auto;overflow-wrap:break-word;margin:0 0 1.05em}
+.prose.prose-en p:last-child{margin-bottom:0}
+
+/* Article outline. The side list sits in the margin beside .col
+   (margin-left 240px, width 640px) and does not change that column. */
+.post-stage{position:relative}
+.toc{display:none}
+.toc-mobile{margin:-12px 0 36px;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.toc-mobile summary{font-family:var(--latin);font-style:italic;font-weight:400;font-size:14px;color:var(--sub);letter-spacing:.12em;padding:14px 0;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:baseline}
+.toc-mobile summary::-webkit-details-marker{display:none}
+.toc-mobile summary::after{content:"+";font-family:var(--latin);font-style:normal;letter-spacing:0;color:var(--sub2)}
+.toc-mobile[open] summary::after{content:"–"}
+.toc-mobile .toc-list{padding:0 0 12px}
+.toc-mobile .toc-list a{display:block;padding:5px 0;font-size:13.5px;line-height:1.75;letter-spacing:.04em;color:var(--sub);overflow-wrap:break-word}
+.toc-mobile .toc-list .is-h3 a{padding-left:16px}
+.toc-mobile .toc-list a:hover{color:var(--ink2)}
+.toc-mobile .toc-list a[aria-current="location"]{color:var(--ink)}
+.toc-mobile .toc-list a[aria-current="location"]::before{content:"";display:inline-block;width:6px;height:6px;margin-right:8px;background:var(--shu);vertical-align:.08em}
+.toc-list{list-style:none}
+.toc a:focus-visible,.toc-mobile a:focus-visible{outline:1px solid var(--rule2);outline-offset:2px}
+@media (min-width:1200px){
+  .toc{display:block;position:absolute;top:64px;bottom:0;left:calc(240px + 640px + 72px);width:min(220px,calc(100vw - 240px - 640px - 72px - 32px))}
+  .toc-inner{position:sticky;top:28px;max-height:min(calc(100vh - 56px),100%);overflow-y:auto;overscroll-behavior:contain;padding-right:10px;scrollbar-width:thin;scrollbar-color:var(--rule2) transparent}
+  .toc-inner::-webkit-scrollbar{width:8px}
+  .toc-inner::-webkit-scrollbar-thumb{background:var(--rule2)}
+  .toc .label{position:sticky;top:0;z-index:1;margin-bottom:12px;padding-bottom:4px;background:var(--bg)}
+  .toc .toc-list{border-left:1px solid var(--rule)}
+  .toc .toc-list a{display:block;margin-left:-1px;border-left:1px solid transparent;padding:5px 0 5px 14px;font-size:13px;line-height:1.65;letter-spacing:.03em;color:var(--sub);overflow-wrap:break-word;transition:color .3s,border-color .3s}
+  .toc .toc-list .is-h3 a{padding-left:28px}
+  .toc .toc-list a:hover{color:var(--ink2)}
+  .toc .toc-list a[aria-current="location"],.toc .toc-list a[aria-current="location"]:hover{color:var(--ink);border-left-color:var(--shu)}
+  .toc-mobile{display:none}
+}
 
 /* about */
 dl.facts{display:grid;grid-template-columns:120px 1fr;row-gap:14px;font-size:15px;line-height:1.9;margin:8px 0 48px}
@@ -130,6 +167,7 @@ footer.site-footer{margin:96px 0 0 240px;width:640px;font-family:var(--latin);fo
   .page-title{font-size:26px}
   .post-title{font-size:23px;letter-spacing:.05em}
   .prose{font-size:15px;line-height:2.05}
+  .prose.prose-en{font-size:15.5px;line-height:1.65}
   .prose h2{font-size:18px}
   .prose pre{margin-left:-28px;margin-right:-28px;padding:18px 28px;border-left:none}
   .prose pre code{font-size:12.5px}

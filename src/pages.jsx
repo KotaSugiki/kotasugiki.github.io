@@ -1,36 +1,48 @@
-import { Fragment } from 'react';
+import { Fragment, useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 import { A, Footer, PostList, useTitle } from './components.jsx';
 import { posts, postsByYear } from './content.js';
 import { Markdown } from './markdown.jsx';
+import { segmentArticle } from './outline.js';
+import { TocAside, TocMobile, useArticleToc } from './toc.jsx';
 
 export function Post() {
   const { slug } = useParams();
   const post = posts.find((item) => item.slug === slug);
   useTitle(post ? `${post.title} — Kota Sugiki` : '見つかりません — Kota Sugiki');
   if (!post) return <Missing />;
+  return <Article post={post} />;
+}
+
+function Article({ post }) {
+  const segmented = useMemo(() => segmentArticle(post.body), [post.body]);
+  const { active, onClick } = useArticleToc(segmented.toc);
 
   return (
     <>
-      <main className="col">
-        <article>
-          <header className="post-head">
-            <div className="post-meta fade" style={{ '--i': 0 }}>
-              <time dateTime={post.published}>{post.date}</time>
-              {post.tags.map((tag) => <span key={tag}>{tag}</span>)}
-              <A className="u" href={post.qiita} target="_blank" rel="noopener">元記事（Qiita）</A>
+      <div className="post-stage">
+        <main className="col">
+          <article>
+            <header className="post-head">
+              <div className="post-meta fade" style={{ '--i': 0 }}>
+                <time dateTime={post.published}>{post.date}</time>
+                {post.tags.map((tag) => <span key={tag}>{tag}</span>)}
+                <A className="u" href={post.qiita} target="_blank" rel="noopener">元記事（Qiita）</A>
+              </div>
+              <h1 className="post-title fade" style={{ '--i': 1 }}>{post.title}</h1>
+            </header>
+            <TocMobile headings={segmented.toc} active={active} onClick={onClick} />
+            <div className="prose fade" style={{ '--i': 2 }}>
+              <Markdown blocks={segmented.blocks} />
             </div>
-            <h1 className="post-title fade" style={{ '--i': 1 }}>{post.title}</h1>
-          </header>
-          <div className="prose fade" style={{ '--i': 2 }}>
-            <Markdown source={post.body} />
-          </div>
-          <div className="post-foot fade" style={{ '--i': 3 }}>
-            <A className="u" href="/writing">← 文章の一覧</A>
-            <A className="u" href={post.qiita} target="_blank" rel="noopener">Qiitaで読む →</A>
-          </div>
-        </article>
-      </main>
+            <div className="post-foot fade" style={{ '--i': 3 }}>
+              <A className="u" href="/writing">← 文章の一覧</A>
+              <A className="u" href={post.qiita} target="_blank" rel="noopener">Qiitaで読む →</A>
+            </div>
+          </article>
+        </main>
+        <TocAside headings={segmented.toc} active={active} onClick={onClick} />
+      </div>
       <Footer i={4} />
     </>
   );
@@ -47,10 +59,10 @@ export function Home() {
           <span className="roman">Kōta Sugiki</span>
         </div>
         <p className="intro fade" style={{ '--i': 2 }}>
-          ローカルLLMの環境構築と、機械学習の基盤まわりを<br />
+          ローカルLLMの環境構築と、音に関する機械学習を<br />
           仕事にしているソフトウェアエンジニアです。<br />
-          手元のGPUで動かしてみて、<br />
-          わかったことを静かに書き留めています。
+          個人開発のプロダクト紹介や<br />
+          学んだことや日々の日記を書き留めています。
         </p>
         <section className="fade" style={{ '--i': 3 }}>
           <h2 className="label">Recent writing</h2>
@@ -98,30 +110,38 @@ export function About() {
           <span className="roman">Kōta Sugiki</span>
         </div>
         <div className="prose fade" style={{ '--i': 2 }}>
-          <p>杉木航太です。東京で、ローカルLLMの環境構築と機械学習の基盤まわりを担当するソフトウェアエンジニアをしています。</p>
-          <p>クラウドに頼らず、手元のマシンでモデルを気持ちよく動かすことに興味があります。試してみてわかったことを、このサイトに書いています。</p>
+          <p>杉木航太です。三重で、ローカルLLMの環境構築と音に関する機械学習を担当するソフトウェアエンジニアをしています。</p>
+          <p>最近では生成AIに関する教育・アウトリーチも行っています。</p>
+          <p>エンジニアリング以外のことも含め、試してみてわかったことや日記を、このサイトに書いています。</p>
           <p>うまくいった話だけでなく、遠回りした記録も残すようにしています。どこかの誰かの検証時間が少しでも減れば嬉しいです。</p>
         </div>
-        <h2 className="label fade" style={{ '--i': 3, marginTop: 40 }}>Profile</h2>
-        <dl className="facts fade" style={{ '--i': 4 }}>
+        <h2 className="label fade" style={{ '--i': 3, marginTop: 40 }}>English</h2>
+        <div className="prose prose-en fade" lang="en" style={{ '--i': 4 }}>
+          <p>I'm Kota Sugiki, a software engineer based in Mie, Japan, working on local LLM infrastructure and machine learning for audio.</p>
+          <p>Recently, I've also been involved in education and outreach around generative AI.</p>
+          <p>On this site, I write about what I've learned by trying things out, including things outside of engineering, along with a personal journal.</p>
+          <p>I try to record not only what worked, but also the detours along the way. I'd be glad if it saves someone, somewhere, a little time in their own experiments.</p>
+        </div>
+        <h2 className="label fade" style={{ '--i': 5, marginTop: 40 }}>Profile</h2>
+        <dl className="facts fade" style={{ '--i': 6 }}>
           <dt>Focus</dt>
           <dd>ローカルLLMの推論環境、量子化、ML基盤</dd>
           <dt>Tools</dt>
           <dd>llama.cpp / Ollama / vLLM / MLX / Docker</dd>
           <dt>Location</dt>
-          <dd>東京（JST）</dd>
+          <dd>三重（JST）</dd>
           <dt>Now</dt>
           <dd>自宅の推論サーバーを静かに作り直しています。</dd>
         </dl>
-        <h2 className="label fade" style={{ '--i': 5 }}>Elsewhere</h2>
-        <ul className="links-list fade" style={{ '--i': 6 }}>
+        <h2 className="label fade" style={{ '--i': 7 }}>Elsewhere</h2>
+        <ul className="links-list fade" style={{ '--i': 8 }}>
           <li><A className="u" href="https://github.com/KotaSugiki" target="_blank" rel="noopener">GitHub</A></li>
           <li><A className="u" href="https://x.com/" target="_blank" rel="noopener">X</A></li>
           <li><A className="u" href="/rss.xml">RSS</A></li>
           <li><A className="u" href="mailto:sgk5utaa@gmail.com">sgk5utaa@gmail.com</A></li>
         </ul>
       </main>
-      <Footer i={7} />
+      <Footer i={9} />
     </>
   );
 }
