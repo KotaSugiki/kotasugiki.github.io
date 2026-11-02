@@ -131,6 +131,8 @@ ol.posts a:hover time{color:var(--ink2)}
 /* about */
 dl.facts{display:grid;grid-template-columns:120px 1fr;row-gap:14px;font-size:15px;line-height:1.9;margin:8px 0 48px}
 dl.facts dt{font-family:var(--latin);font-style:italic;color:var(--sub);letter-spacing:.1em}
+dl.facts dd{word-break:keep-all;line-break:strict}
+dl.facts dd .fact-item{white-space:nowrap}
 .links-list{list-style:none;display:flex;flex-wrap:wrap;gap:28px;font-size:14px;letter-spacing:.16em}
 .links-list a{position:relative;padding-bottom:3px}
 
