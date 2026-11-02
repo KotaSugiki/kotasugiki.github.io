@@ -1,4 +1,4 @@
-import { Fragment, useLayoutEffect } from 'react';
+import { useLayoutEffect } from 'react';
 import { flushSync } from 'react-dom';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 
@@ -62,12 +62,12 @@ export function PostList({ posts, showTags = false }) {
   return (
     <ol className="posts">
       {posts.map((post) => (
-        <li key={post.date} className={post.soon ? 'soon' : undefined}>
+        <li key={post.slug}>
           <A href={post.href}>
             <time>{post.date}</time>
             <span className="t">
               {post.title}
-              {showTags ? <span className="tag">{post.tag}</span> : null}
+              {showTags ? <span className="tag">{post.tags.join(' · ')}</span> : null}
             </span>
             <span className="arrow">→</span>
           </A>
@@ -102,27 +102,12 @@ export function Layout() {
         <nav aria-label="メイン">
           <A href="/writing" aria-current={writingOn ? 'page' : undefined}>文章</A>
           <A href="/about" aria-current={aboutOn ? 'page' : undefined}>自己紹介</A>
-          <a href="https://github.com/" target="_blank" rel="noopener">GitHub</a>
+          <a href="https://github.com/KotaSugiki" target="_blank" rel="noopener">GitHub</a>
           <a href="https://x.com/" target="_blank" rel="noopener">X</a>
           <a href="/rss.xml">RSS</a>
         </nav>
       </header>
       <Outlet />
     </>
-  );
-}
-
-export function Pre({ lines }) {
-  return (
-    <pre>
-      <code>
-        {lines.map((line, index) => (
-          <Fragment key={index}>
-            {index > 0 ? '\n' : null}
-            {line}
-          </Fragment>
-        ))}
-      </code>
-    </pre>
   );
 }

@@ -58,12 +58,13 @@ ol.posts a:hover time{color:var(--ink2)}
 
 /* article */
 .post-head{margin-bottom:56px}
-.post-meta{font-family:var(--latin);font-size:13px;color:var(--sub2);letter-spacing:.08em;display:flex;gap:16px;align-items:center;margin-bottom:22px}
+.post-meta{font-family:var(--latin);font-size:13px;color:var(--sub2);letter-spacing:.08em;display:flex;gap:16px;align-items:center;margin-bottom:22px;flex-wrap:wrap;row-gap:8px}
 .post-title{font-size:32px;font-weight:400;line-height:1.6;letter-spacing:.08em;view-transition-name:post-title}
 .prose{font-size:16px;line-height:2.15;letter-spacing:.05em;color:var(--ink2)}
 .prose p{margin:0 0 1.6em}
-.prose h2{font-size:21px;font-weight:500;letter-spacing:.1em;color:var(--ink);margin:3.2em 0 1.1em;display:flex;align-items:center;gap:14px}
-.prose h2::before{content:"";width:8px;height:8px;background:var(--shu);flex:none}
+.prose h1,.prose h2{font-size:21px;font-weight:500;letter-spacing:.1em;color:var(--ink);margin:3.2em 0 1.1em}
+.prose h1::before,.prose h2::before{content:"";display:inline-block;width:8px;height:8px;background:var(--shu);margin-right:14px;vertical-align:.12em}
+.prose > h1:first-child,.prose > h2:first-child{margin-top:0}
 .prose h3{font-size:17px;font-weight:500;letter-spacing:.08em;color:var(--ink);margin:2.4em 0 .8em}
 .prose ul,.prose ol{margin:0 0 1.6em 1.4em}
 .prose li{margin:.3em 0}
@@ -75,7 +76,16 @@ ol.posts a:hover time{color:var(--ink2)}
 .prose pre .c{color:#9a9283}
 .prose blockquote{margin:2em 0;padding:4px 0 4px 26px;border-left:1px solid var(--shu);color:#6d665a;font-size:15px}
 .prose blockquote p{margin:0}
+.prose img{max-width:100%;height:auto;display:block;margin:.6em 0 1.2em}
+.prose hr{border:0;border-top:1px solid var(--rule);margin:2.4em 0}
+.prose strong{font-weight:500;color:var(--ink)}
+.prose .table-scroll{overflow-x:auto;margin:0 0 1.8em}
+.prose .table-scroll table{margin:0}
 .prose table{border-collapse:collapse;width:100%;margin:0 0 1.8em;font-size:14px}
+.prose .code-file{font-family:var(--mono);font-size:12px;letter-spacing:.02em;color:var(--sub);margin:0 0 8px}
+.prose .deck{margin:0 0 1.8em}
+.prose .deck iframe{display:block;width:100%;aspect-ratio:16/9;border:0;background:var(--code)}
+.prose .deck a{display:inline-block;margin-top:10px;font-size:13px;letter-spacing:.08em}
 .prose th,.prose td{text-align:left;padding:10px 12px 10px 0;border-bottom:1px solid var(--rule)}
 .prose th{font-weight:500;color:var(--ink);border-bottom-color:var(--rule2)}
 .prose td code{white-space:nowrap}
