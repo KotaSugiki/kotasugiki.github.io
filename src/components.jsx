@@ -108,7 +108,7 @@ export function Layout() {
           <A href="/blog" aria-current={writingOn ? 'page' : undefined}>ブログ</A>
           <A href="/about" aria-current={aboutOn ? 'page' : undefined}>自己紹介</A>
           <a href="https://github.com/KotaSugiki" target="_blank" rel="noopener">GitHub</a>
-          <a href="https://x.com/" target="_blank" rel="noopener">X</a>
+          <a href="https://x.com/ai_dev_radar_jp" target="_blank" rel="noopener">X</a>
           <a href="/rss.xml">RSS</a>
         </nav>
       </header>

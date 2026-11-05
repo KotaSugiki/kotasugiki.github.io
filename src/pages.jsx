@@ -149,7 +149,7 @@ export function About() {
         <h2 className="label fade" style={{ '--i': 7 }}>Elsewhere</h2>
         <ul className="links-list fade" style={{ '--i': 8 }}>
           <li><A className="u" href="https://github.com/KotaSugiki" target="_blank" rel="noopener">GitHub</A></li>
-          <li><A className="u" href="https://x.com/" target="_blank" rel="noopener">X</A></li>
+          <li><A className="u" href="https://x.com/ai_dev_radar_jp" target="_blank" rel="noopener">X</A></li>
           <li><A className="u" href="/rss.xml">RSS</A></li>
           <li><A className="u" href="mailto:sgk5utaa@gmail.com">sgk5utaa@gmail.com</A></li>
         </ul>
